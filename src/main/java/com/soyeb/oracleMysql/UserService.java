@@ -23,6 +23,7 @@ public class UserService {
 	
 	public void save(User user) {
 		repo.save(user);
+		
 	}
 	
 //	public void update(long id,String image) {
@@ -76,11 +77,31 @@ public class UserService {
 		repo.updateUserpPassword(id, password);
 		
 	}
+	
+	public User getRegisteredUser(User user) {
+//		
+		String email = user.getEmail();
+		System.out.println(email);
+		User user2 = repo.checkedMailByQuery2(email);
+		
+		if(user2==null) {
+			repo.save(user);
+			Map<String, String> map = new HashMap<>();
+		    map.put("Status", "Success");
+		    map.put("Code", "1");
+		    return user2;
+		}else {
+			return user2;
+		}
+		
+	}
 
 	public User getCheckedUserMail(Set<String> email) {
 		// TODO Auto-generated method stub
 		User user = repo.checkedMailByQuery(email);
 		return user;
 	}
+	
+	
 
 }

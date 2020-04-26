@@ -1,7 +1,9 @@
 package com.soyeb.oracleMysql;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +105,40 @@ public class UserResorce {
 		 map.put("Code", "1");
 		return map;
 		 	 
+	}
+	
+	@PostMapping("/createNew")
+	public HashMap<String,String> saveUserNew(@ModelAttribute("user") User user) {
+		User user2= service.getRegisteredUser(user);
+		if(user2==null) {
+			HashMap<String, String> map = new HashMap<>();
+		    map.put("Status", "Success");
+		    map.put("Code", "1");
+		    return map;
+		}else {
+			HashMap<String, String> map = new HashMap<>();
+		    map.put("Status", "Email exists");
+		    map.put("Code", "2");
+		    return map;
+		}
+		
+	}
+	
+	@GetMapping("/usersNew")
+	public Map<String, List<User>> retriveAllUsersNew(){
+		User user = (User) userRepository.findAll();
+//		if(user!=null) {
+			List<Map<String, List<User>>> list = new ArrayList<Map<String,List<User>>>();
+			Map<String, List<User>> map1 = new HashMap<String, List<User>>();
+			List<User> newUser= new ArrayList<User>();
+			HashMap<String, String> map = new HashMap<>();
+		    map.put("Status", "Success");
+		    map.put("Code", "1");
+		    map1.put("User",(List<User>) user);
+		    list.add(map1);
+		    return map1;
+//		}
+//		return ;
 	}
 
 }

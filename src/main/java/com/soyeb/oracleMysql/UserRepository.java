@@ -18,6 +18,10 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	@Query(nativeQuery = true,value = checkMail)
 	User  checkedMailByQuery(Set<String> email);
 	
+	String checkMail2 = "select * from user where email = ?1";
+	@Query(nativeQuery = true,value = checkMail)
+	User  checkedMailByQuery2(String mail);
+	
 	
 //	String updateQuery = "UPDATE user where ";
 //	@Query("")
@@ -47,4 +51,9 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	@Modifying(clearAutomatically = true)
 	@Query(nativeQuery = true,value = updatePassword)
 	void updateUserpPassword(Set<Long> id,Set<String> password);
+	
+	String selectAll = "SELECT * FROM user";
+	@Modifying(clearAutomatically = true)
+	@Query(nativeQuery = true,value =selectAll)
+	User allUser();
 }
