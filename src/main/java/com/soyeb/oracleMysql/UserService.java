@@ -102,6 +102,14 @@ public class UserService {
 		return user;
 	}
 	
+	public void deleteSomeUser(List<Integer> ids) {
+		repo.deleteUsersWithIds(ids);
+	}
+	
+	public void deleteSomeUser(int ids) {
+		repo.deleteUsersWithIds(ids);
+	}
+	
 	
 
 }

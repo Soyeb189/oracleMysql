@@ -1,6 +1,7 @@
 package com.soyeb.oracleMysql;
 
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -56,4 +57,12 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	@Modifying(clearAutomatically = true)
 	@Query(nativeQuery = true,value =selectAll)
 	User allUser();
+	
+	@Modifying
+	@Query("delete from User u where u.id in ?1")
+	void deleteUsersWithIds(List<Integer> ids);
+	
+	@Modifying
+	@Query("delete from User u where u.id in ?1")
+	void deleteUsersWithIds(int ids);
 }

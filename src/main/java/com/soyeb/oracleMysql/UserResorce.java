@@ -140,5 +140,27 @@ public class UserResorce {
 //		}
 //		return ;
 	}
+	
+	@PostMapping("/deleteMultiple")
+	public HashMap<String, String> deleteUser(@RequestParam(value="ids") List<Integer> ids){
+		
+		 service.deleteSomeUser(ids);
+		 HashMap<String, String> map = new HashMap<String, String>();
+		 map.put("Status", "Success");
+		 map.put("Code", "1");
+		 return map;
+		 	 
+	}
+	@PostMapping("/deleteSingle")
+	public HashMap<String, String> deleteUser(@RequestParam(value="ids") int ids){
+		
+		 service.deleteSomeUser(ids);
+		 HashMap<String, String> map = new HashMap<String, String>();
+		 map.put("Status", "Success");
+		 map.put("Code", "1");
+		 return map;
+		 	 
+	}
+	
 
 }

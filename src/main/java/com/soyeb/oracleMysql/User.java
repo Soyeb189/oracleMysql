@@ -10,7 +10,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	private int id;
 	private String name;
 	private String email;
 	private String phone;
@@ -25,7 +25,7 @@ public class User {
 	
 	
 
-	public User(long id, String name, String email, String phone, String password, String image, String uuid,
+	public User(int id, String name, String email, String phone, String password, String image, String uuid,
 			int checeked_value) {
 		super();
 		this.id = id;
@@ -44,7 +44,7 @@ public class User {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
